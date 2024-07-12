@@ -2,7 +2,19 @@
 
 const PokeTable = () => {
   return (
-    <div>PokeTable</div>
+    <>
+    <table>
+        <thead>
+            <td>Name</td>
+            <td>URL</td>
+        </thead>
+        <tbody>
+            <td>1</td>
+            <td>1</td>
+        </tbody>
+    </table>
+    
+    </>
   )
 }
 
