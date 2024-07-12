@@ -16,7 +16,6 @@ const ActualDate = () => {
         const newDate = new Date();
         const dayDate = newDate.toLocaleString().split(' ')[0]
         const hourDate = newDate.toLocaleString().split(' ')[1]
-        console.log(hourDate, 'y la hora es: ', dayDate)
         setDate({day: dayDate, hour: hourDate})
       }, 1000)
       return ()=>clearInterval(interval)
