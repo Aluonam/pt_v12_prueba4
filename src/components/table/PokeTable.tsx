@@ -1,18 +1,41 @@
 import { useEffect, useState } from "react"
 
+export interface tabPropstype {
+    name : string;
+    url: string;
+}
 
 const PokeTable = () => {
 
-    const [dataAPI, setDataAPI] = useState<string[]>()
+    const [dataAPI, setDataAPI] = useState<tabPropstype[]>()
+
+    useEffect(() => {
+      fecthData()
+    }, [])
+    
 
     const fecthData = async ()=>{
-        const call = await fetch(`https://pokeapi.co/api/v2/pokemon`);
-        const data = await call.json()
-        setDataAPI(data.result)
-        console.log(data.results)
+        try{ 
+            const call = await fetch(`https://pokeapi.co/api/v2/pokemon`);
+            const data = await call.json()
+            setDataAPI(data.results)
+            console.log(data.results)
+        } catch (err) {
+            console.log('Error', err);
+        }
+       
     }
+
+    const table = dataAPI?.map((obj)=>{
+        return(
+            <tr>
+             <td>{obj.name}</td>
+             <td><a href={obj.url}></a>{obj.url}</td>
+             </tr>
+        )
+    })
     
-    fecthData()
+
   return (
     <>
     <table>
@@ -21,8 +44,7 @@ const PokeTable = () => {
             <td>URL</td>
         </thead>
         <tbody>
-            <td>1</td>
-            <td>1</td>
+            {table}
         </tbody>
     </table>
     
